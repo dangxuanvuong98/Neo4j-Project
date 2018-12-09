@@ -26,6 +26,34 @@ III. Giao diện
 		+ Thêm 1 hoặc nhiều truy vấn vào danh sách. Tham số của mỗi truy vấn được người dùng chỉ định cụ thể, hoặc ngẫu nhiên -> cần 1 phương thức sinh ngẫu nhiên truy vấn.
 			Ví dụ: truy vấn loại 1 của mình là: MATCH (p1 {name:???}) - [friend] - (p2) thì chỗ ??? kia là tham số mà người dùng có thể chỉ định cụ thể hoặc ngẫu nhiên.
 
-IV. 
+IV. Các lớp bổ sung
+	- Lưu trữ: Các lớp này dùng để lưu trữ dữ liệu
+		+ Các lớp thực thể và lớp quan hệ chỉ chứa các thuộc tính, các hàm setter, getter.
+			. Lớp thực thể tổng quát Entity chứa các thuộc tính: id, name, description
+			. Các lớp Person, Location, Country, Time, Organization, Event kế thừa từ lớp Entity và khai báo thêm các thuộc tính cần thiết.
+			. Source là lớp chứa nguồn gốc trích rút: gồm 2 thuộc tính là link, time và các hàm getter, setter
+			. Lớp quan hệ chứa các thuộc tính: id, type, en_id1, en_id2, source
+		+ 6 lớp sinh thực thể ngẫu nhiên và 1 lớp sinh quan hệ ngẫu nhiên
+	- Truy vấn:
+		+ Giao diện thì chắc dùng swing kéo thả thôi, không liên quan đến oop lắm, nên t sẽ không bàn nhé
+		+ Lớp xử lý yêu cầu:
+			. Lớp này sẽ nhận yêu cầu, tiền xử lý truy vấn, gửi truy vấn và trả lại kết quả.
+			. Bước tiền xử lý truy vấn là bước thêm các tham số ngẫu nhiên mà t nói ở phần trên -> tận dụng lại các lớp sinh ngẫu nhiên. Đấy là lý do mà t tách riêng các lớp đó ra. (Bước này sẽ được giao về riêng cho từng phương thức)
+			. Phần sinh dữ liệu sẽ nằm trong lớp truy vấn luôn nhé. Nó sẽ nhận đầu vào là số lượng thực thể và số lượng quan hệ rồi sau đó sinh ngẫu nhiên.
+		+ Lớp truy vấn: có nhiệm vụ liên lạc với csdl, nhận vào câu lệnh truy vấn (sau khi đã được tiền xử lý) và trả về kết quả (dưới dạng mảng 2 chiều)
+	- Lớp khởi tạo - lớp main:
+		+ Lớp này sẽ đọc dữ liệu từ file (mấy cái "nguyên liệu" để sinh dữ liệu ngẫu nhiên ấy) và lưu trữ, khởi tạo kết nối đến csdl, sau đó tạo giao diện người dùng.
+
+	--> Nói chung là, mình sẽ có các lớp sau:
+		+ Lớp Main: Khởi tạo và điều khiển chương trình
+		+ Lớp HandleRequest: Xử lý các yêu cầu và trả kết quả lên giao diện.
+		+ Lớp Query: Có nhiệm vụ liên lạc với csdl
+		+ Lớp Entity, các lớp kế thừa của nó và lớp Relationship: Dùng để lưu trữ các đối tượng (nằm trong gói objects nhé, chả biết dùng từ này có bị sao không :v).
+		+ Các lớp sinh thực thể ngẫu nhiên và quan hệ ngẫu nhiên (nằm trong gói generators nhé)
+
 
 IV. Phân công công việc
+	Về công việc thì t nghĩ mình nên chia thành 2 nhóm, một phần để hỗ trợ nhau, một phần là có nhiều phần cũng liên quan nhiều, xé lẻ ra thì không hiệu quả lắm.
+	Nên t sẽ chia như này:
+		- 2 người làm các lớp Entity, Relationship và các lớp sinh ngẫu nhiên.
+		- 3 người làm phần còn lại gồm: làm giao diện, xử lý request, truy vấn, và Main :v Trong đấy thì 1 người sẽ làm giao diện, nhưng cũng phải hiểu về những cái kia
