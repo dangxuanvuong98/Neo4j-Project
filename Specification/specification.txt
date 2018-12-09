@@ -1,0 +1,31 @@
+I. Về công cụ - Neo4j:
+	- Là cơ sở dữ liệu dạng đồ thị
+	- Mỗi nút lưu một thực thể và chứa các thông tin theo định dạng sau:
+		id: label(tên thuộc tính 1: thuộc tính 1, tên thuộc tính 2: thuộc tính 2,...)
+	- Mỗi cung (1 chiều) lưu trữ một quan hệ (có hướng từ chủ thể chủ động sang chủ thể bị động). Cung chứa thông tin theo định dạng sau:
+		Chủ thể chủ động - [id: type(tên thuộc tính 1: thuộc tính 1, tên thuộc tính 2: thuộc tính 2,...)] -> Chủ thể bị động
+	- Ta coi một thực thể hoặc một quan hệ là một đối tượng với label (đối với đối tượng thực thể) hoặc type (đối với đối tượng quan hệ) chính là class chứa đối tượng đó. id, các thuộc tính của thực thể/ quan hệ sẽ là các thuộc tính của đối tượng, trong đó thuộc tính id là bắt buộc (cái này không biết neo4j có hỗ trợ sinh luôn không, nếu có thì mình sẽ để neo4j sinh giúp).
+	- Trong neo4j hỗ trợ các kiểu dữ liệu: integer, float, boolean, string, date, time, datetime,... nên để dễ tương thích thì mình sẽ dùng các kiểu dữ liệu này trong chương trình.
+
+II. Về cách thức hoạt động của chương trình:
+	- Sau khi khởi tạo, chương trình sẽ tạo ra giao diện người dùng.
+	- Người dùng sẽ gửi truy vấn và nhận về kết quả ở đây
+	- Người dùng có thể gửi nhiều truy vấn cùng lúc (cần tạo một danh sách truy vấn rồi bấm nút gửi - cái này là để mô phỏng hoạt động trong thực tế, lúc mà có nhiều người cùng gửi truy vấn ấy, t sẽ nói rõ về cái này ở bên dưới)
+	- Phần xử lý truy vấn sẽ sinh ra các luồng phù hợp (mỗi luồng ứng với một truy vấn).
+	- Khi các truy vấn đã hoàn thành, phần xử lý sẽ trả kết quả lên giao diện
+	- Phần xử lý truy vấn cũng sẽ đếm thời gian truy vấn và trả kết quả lên giao diện.
+
+III. Giao diện
+	- Dự định của t là tạo một giao diện đồ hoạ đơn giản có các chức năng sau:
+		+ Cho phép người dùng tạo danh sách truy vấn: Sẽ cần 1 list box để lưu các truy vấn của người dùng
+		+ Gửi danh sách truy vấn đã tạo
+		+ Nhận về kết quả truy vấn
+		+ Nhận về thời gian thực hiện truy vấn
+	- Trong đó, các thao tác tạo truy vấn mà người dùng có thể thực hiện bao gồm
+		+ Thêm 1 truy vấn tạo mới một csdl ngẫu nhiên với số lượng thực thể và quan hệ được chỉ định. Truy vấn loại này được thực hiện riêng biệt (tức là sẽ không có chuyện tạo ra một list truy vấn nữa)
+		+ Thêm 1 hoặc nhiều truy vấn vào danh sách. Tham số của mỗi truy vấn được người dùng chỉ định cụ thể, hoặc ngẫu nhiên -> cần 1 phương thức sinh ngẫu nhiên truy vấn.
+			Ví dụ: truy vấn loại 1 của mình là: MATCH (p1 {name:???}) - [friend] - (p2) thì chỗ ??? kia là tham số mà người dùng có thể chỉ định cụ thể hoặc ngẫu nhiên.
+
+IV. 
+
+IV. Phân công công việc
