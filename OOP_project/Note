@@ -1,7 +1,2 @@
 -Source ở lớp Relationship chưa khởi tạo
 -RelationshipGenerator.java dòng 63, hàm này cần các hàm getIndex() ở các lớp Person,Oganization,Event
--Hiện tại,mỗi lớp đều có 1 thuộc tính là rand,là instance của java.util.Random
-object này dùng để random trong các phương thức của lớp sinh đó
-Còn một vài chỗ có thể dính bug vì cái rand này tôi để ở hàm đọc dữ liệu getData;nếu ko gọi getData trước thì có thể có lỗi do cái rand này chưa được khởi tạo.Có 2 phương án:
-1.Mỗi method sinh ngẫu nhiên tạo ra 1 cái random rồi tự dùng
-2.fix lỗi ở trên
