@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/database/Model.java=UTF-8
+encoding//src/generator/CountryGenerator.java=UTF-8
+encoding//src/generator/EventGenerator.java=UTF-8
+encoding//src/generator/LocationGenerator.java=UTF-8
+encoding//src/generator/OrganizationGenerator.java=UTF-8
+encoding//src/generator/PersonGenerator.java=UTF-8
+encoding//src/generator/RelationshipGenerator.java=UTF-8
+encoding//src/generator/TimeGenerator.java=UTF-8
+encoding//src/object/Country.java=UTF-8
+encoding//src/object/Location.java=UTF-8
+encoding//src/object/Relationship.java=UTF-8
+encoding//src/object/Time.java=UTF-8

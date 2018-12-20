@@ -20,7 +20,7 @@ public class BigRequestNumberTest
     	String model = "[{name: \"Vuong_0\", age: 20}";
     	for (Integer i = startIndex; i < endIndex; i++) {
     		System.out.println(i);
-    		model += ", {name: \"Vuong_" + i.toString() + "\", age: 20}";
+    		model += ", {name: \"Vuong" + i.toString() + "\", age: 20}";
     	}
     	model += "]";
     	String query = "unwind " + model + " as row match(n) where n.name = row.name detach delete n";
@@ -76,6 +76,23 @@ public class BigRequestNumberTest
         }
     }
     
+    private void addBatchver3(Integer batchSize) {
+    	ArrayList<String> model = new ArrayList<String>();
+    	for (Integer i = 0; i < batchSize; i++) {
+    		model.add("CREATE (:Person{name: \"Vuong_" + i.toString() + "\", age: 20})");
+    	}
+    	String query = String.join("\n", model);
+    	try (Session session = driver.session())
+        {
+            try (Transaction tx = session.beginTransaction())
+            {
+            	System.out.println(query.length());
+                tx.run(query);
+                tx.success();
+            }
+        }
+    }
+    
     private void addMiniBatch(Integer batchSize) {
     	for (Integer i = 0; i < batchSize; i++) {
     		try (Session session = driver.session()) {
@@ -99,6 +116,7 @@ public class BigRequestNumberTest
         long start = System.currentTimeMillis();
         for (int i = 0; i < 1; i++)
         	example.addBatchver2(1000);
+//        example.deleteBatch(0, 50000);
         System.out.println(System.currentTimeMillis() - start);
         example.close();
     }
