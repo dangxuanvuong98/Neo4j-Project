@@ -88,11 +88,11 @@ public class PersonGenerator {
 		}
 	}
 
-	public String randomId() {
+	public static String randomId() {
 		return "Person" + getIndex();
 	}
 
-	public String randomName() {
+	public static String randomName() {
 		if (lastname_list.isEmpty() && midname_list.isEmpty()
 				&& firstname_list.isEmpty()) {
 			return "";
@@ -107,15 +107,15 @@ public class PersonGenerator {
 		return name;
 	}
 
-	public String randomDescription() {
+	public static String randomDescription() {
 		return "Là một người nổi tiếng";
 	}
 
-	public Integer randomAge() {
+	public static Integer randomAge() {
 		return 10 + (int) (Math.random() * 50);
 	}
 
-	public Boolean randomGender() {
+	public static Boolean randomGender() {
 		if (Math.random() >= 0.5) {
 			return true;
 		} else {
@@ -123,7 +123,7 @@ public class PersonGenerator {
 		}
 	}
 
-	public String randomJob() {
+	public static String randomJob() {
 		if (job_list.isEmpty()) {
 			return "";
 		}
@@ -131,7 +131,7 @@ public class PersonGenerator {
 		return job_list.get(random_num);
 	}
 	
-	public Person generatePerson() {
+	public static Person generatePerson() {
 		Person person = new Person();
 		person.setAge(randomAge());
 		person.setDescription(randomDescription());

@@ -1,3 +1,4 @@
+import listener.Router;
 import generator.CountryGenerator;
 import generator.EventGenerator;
 import generator.LocationGenerator;
@@ -12,7 +13,7 @@ public class Main {
 	
 	private static Connector connector;
 	
-	private static void initApp() {
+	public static void main(String args[]) {
 		connector = new Connector("bolt://localhost:7687", "neo4j", "vuong220598");
 		CountryGenerator.getData("", "");
 		EventGenerator.getData("", "");
@@ -22,9 +23,6 @@ public class Main {
 		RelationshipGenerator.getData("");
 		TimeGenerator.getData("");
 		SourceGenerator.getData("");
-	}
-	
-	public static void main(String args[]) {
-		initApp();
+		Router.route(connector);
 	}
 }

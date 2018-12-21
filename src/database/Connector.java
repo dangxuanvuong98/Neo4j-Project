@@ -13,7 +13,7 @@ public class Connector
         driver = GraphDatabase.driver(uri, AuthTokens.basic(user, password));
     }
 
-    private void query(StringBuilder query)
+    public void query(Model query)
     {
         // Sessions are lightweight and disposable connection wrappers.
         try (Session session = driver.session())
@@ -22,7 +22,7 @@ public class Connector
             // and makes handling errors much easier.
             try (Transaction tx = session.beginTransaction())
             {
-                tx.run(query.toString());
+                tx.run(query.getModel().toString());
                 tx.success();  // Mark this write as successful.
             }
         }
