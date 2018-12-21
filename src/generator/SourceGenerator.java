@@ -1,18 +1,48 @@
 package generator;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import object.Source;
 
 public class SourceGenerator {
 	
-	private static String[] link_list = {"bit.ly", "goo.gl"};
+	private static List<String> domain_list;
 	
-	public static void getData(String link_file) {
-		
+	/**
+	 * 
+	 * @param domain_file đường dẫn tới file chứa danh sách các domain
+	 */
+	public static void getData(String domain_file) {
+				// Đọc danh sách domain
+				domain_list = new ArrayList<String>();
+				try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+						new FileInputStream(domain_file), "UTF8"))) {
+					String name;
+					while ((name = reader.readLine()) != null) {
+						domain_list.add(name);
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("Error: Missing filename: " + domain_file);
+					e.printStackTrace();
+				} catch (IOException e) {
+					System.out.println("Error: Fail to read filename: "
+							+ domain_file);
+					e.printStackTrace();
+				}
 	}
 	
+	/**
+	 * 
+	 * @return một ngày/tháng/năm được sinh ngẫu nhiên
+	 */
 	public static Date randomDate() {
 		int random_year = 1980 + (int) (Math.random() * 40);
 		int random_month = 1 + (int) (Math.random() * 12);
@@ -35,13 +65,17 @@ public class SourceGenerator {
 	}
 	
 	public static String randomLink() {
-		if (link_list.length == 0) {
+		if (domain_list.isEmpty()) {
 			return "localhost";
 		}
-		int random_num = (int) (Math.random() * link_list.length);
-		return link_list[random_num] = "/" + Integer.toString((int) (Math.random() * 1000000));
+		int random_num = (int) (Math.random() * domain_list.size());
+		return domain_list.get(random_num) + "/" + Integer.toString((int) (Math.random() * 1000000))+"/"+Integer.toString((int) (Math.random() * 1000000))+".html";
 	}
 	
+	/**
+	 * 
+	 * @return thực thể Source sinh ngẫu nhiên
+	 */
 	public static Source generateSource() {
 		Source source = new Source();
 		source.setDate(randomDate());

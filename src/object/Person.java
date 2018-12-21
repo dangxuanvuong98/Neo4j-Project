@@ -1,5 +1,8 @@
 package object;
-
+/**
+ * Lớp lưu trữ thông tin của thực thể Person
+ *
+ */
 public class Person extends Entity {
 	private Integer age;
 	private Boolean gender;
@@ -34,5 +37,12 @@ public class Person extends Entity {
 
 	public void setJob(String job) {
 		this.job = job;
+	}
+	
+	@Override
+	public String toString() {
+		return "###Name:" + name + "\n-ID:" + id + 
+				 "\n-Description:" + description + "\n-Source:"+source+"\n-Age:"+age+
+				 "\n-Gender:"+gender+"\n-Job:"+job;
 	}
 }

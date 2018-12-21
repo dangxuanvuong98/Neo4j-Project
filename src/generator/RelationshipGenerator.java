@@ -1,9 +1,10 @@
 package generator;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import object.*;
@@ -19,8 +20,9 @@ public class RelationshipGenerator {
 	/**
 	 * Đọc dữ liêụ từ các file,trích rút và lưu trữ phục vụ việc sinh ngẫu nhiên
 	 * 
-	 * @param folder_path
+	 * @param folder_path đường dẫn tới thư mục chứa các danh sách phục vụ sinh quan hệ
 	 */
+	@SuppressWarnings("unchecked")
 	public static void getData(String folder_path) {
 		/*
 		 * Khởi tạo mảng 6*6 các String list Mỗi String list lưu trữ danh sách
@@ -35,8 +37,8 @@ public class RelationshipGenerator {
 			for (int j = 0; j < 6; j++) {
 				index[i][j] = 0;
 				relationship_list[i][j] = new ArrayList<String>();
-				try (BufferedReader reader = new BufferedReader(new FileReader(
-						folder_path + "/" + i + j))) {
+				try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+						new FileInputStream(folder_path+"/"+i+j), "UTF8"))) {
 					String name;
 					while ((name = reader.readLine()) != null) {
 						relationship_list[i][j].add(name);
@@ -68,8 +70,7 @@ public class RelationshipGenerator {
 						+ (int) (Math.random() * PersonGenerator.getIndex());
 			case 1:
 				return "Oganization"
-						+ (int) (Math.random() * OrganizationGenerator
-								.getIndex());
+						+ (int) (Math.random() * OrganizationGenerator.getIndex());
 			case 2:
 				return "Country"
 						+ (int) (Math.random() * CountryGenerator.getIndex());

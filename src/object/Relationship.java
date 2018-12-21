@@ -41,16 +41,17 @@ public class Relationship {
 		this.en_id2 = en_id2;
 	}
 
-	@Override
-	public String toString() {
-		return en_id1 + " " + type + " " + en_id2;
-	}
-
 	public Source getSource() {
 		return source;
 	}
 
 	public void setSource(Source source) {
 		this.source = source;
+	}
+	
+	@Override
+	public String toString() {
+		return "###Type:" + type + "\n-ID1:" + en_id1 +  "\n-ID2:" + en_id2 +
+				 "\n-Source:" + source; 
 	}
 }

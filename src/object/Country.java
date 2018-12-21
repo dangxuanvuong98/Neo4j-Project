@@ -21,7 +21,7 @@ public class Country extends Entity {
 
 	@Override
 	public String toString() {
-		return "###Name:" + name + "\n-ID:" + id + "\n-Capital:" + capital
-				+ "\n-Description:" + description + "\n-Source:";
+		return "###Name:" + name + "\n-ID:" + id + 
+				 "\n-Description:" + description + "\n-Source:"+source+"\n-Capital:" + capital;
 	}
 }

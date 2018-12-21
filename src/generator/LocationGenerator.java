@@ -18,22 +18,23 @@ public class LocationGenerator {
 	private static Integer index;
 	static List<String> location_list;
 	static List<String> country_list;
-	static String[] element = { "bãi biển", "vùng vịnh", "hòn đảo", "bãi tắm",
-			"khu nghỉ dưỡng", "khu sinh thái", "hang động", "khu di tích",
-			"danh lam thắng cảnh", "địa danh", "vùng vịnh", "một thành phố",
-			"trung tâm giải trí", "trung tâm thương mại", "thành phố" };
+	static List<String> des_element_list;
+
 
 	/**
 	 * Đọc dữ liệu từ file,trích rút và lưu lại làm thông tin phục vụ sinh ngẫu
 	 * nhiên
 	 * 
 	 * @param location_file
-	 *            đường dẫn tới file chưa tên các địa danh
+	 *            :đường dẫn tới file chứa danh sách các địa danh
 	 * @param country_file
-	 *            đường dẫn tới file chứa tên các đất nước
+	 *            :đường dẫn tới file chứa danh sách các đất nước
+	 * @param des_element_file 
+	 * 			  :đường dẫn tới file chứa danh sách phần tử phục vụ sinh mô tả
 	 */
-	public static void getData(String location_file, String country_file) {
+	public static void getData(String location_file, String country_file,String des_element_file) {
 		index = 0;
+		
 		// Khởi tạo danh sách locations
 		location_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -69,6 +70,24 @@ public class LocationGenerator {
 			System.out.println("Error: Fail to read filename: " + country_file);
 			e.printStackTrace();
 		}
+		
+		// Khởi tạo danh sách des_element_list
+		des_element_list = new ArrayList<String>();
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+				new FileInputStream(des_element_file), "UTF8"))) {
+			String name;
+
+			while ((name = reader.readLine()) != null) {
+				des_element_list.add(name);
+			}
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: Missing filename: " + des_element_file);
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Error: Fail to read filename: " + des_element_file);
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -94,17 +113,16 @@ public class LocationGenerator {
 	}
 
 	/**
-	 * rand
 	 * 
 	 * @return description ngẫu nhiên cho location
 	 */
 	public static String randomDescription() {
-		int rand1 = (int) (Math.random() * element.length);
+		int rand1 = (int) (Math.random() * des_element_list.size());
 		int rand2 = (int) (Math.random() * 50);
 		return "Là một "
-				+ element[rand1]
-				+ "nổi tiếng thế giới,trung bình mỗi năm đón tiếp khoảng "
-				+ rand2 + "ttriệu lượt khách du lịch";
+				+ des_element_list.get(rand1)
+				+ " nổi tiếng thế giới,trung bình mỗi năm đón tiếp khoảng "
+				+ rand2 + " triệu lượt khách du lịch";
 	}
 	
 	public static String randomId() {
@@ -120,10 +138,11 @@ public class LocationGenerator {
 	 */
 	public static Location generateLocation() {
 		Location location = new Location();
-		location.setCountry(randomCountry());
-		location.setDescription(randomDescription());
 		location.setId(randomId());
 		location.setName(randomName());
+		location.setDescription(randomDescription());
+		location.setSource(SourceGenerator.generateSource());
+		location.setCountry(randomCountry());
 		return location;
 	}
 
