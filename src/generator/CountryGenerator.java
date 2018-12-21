@@ -15,7 +15,7 @@ import object.Country;
  * 
  */
 public abstract class CountryGenerator {
-	private static Integer index = 0;
+	private static Integer index;
 	private static List<String> country_list;
 	private static List<String> capital_list;
 	private static String[] element1 = { "cường quốc",
@@ -80,7 +80,9 @@ public abstract class CountryGenerator {
 	 */
 	public static String randomId() {
 		Integer index = getIndex();
-		return "Country" + index;
+		String id = "Country" + index;
+		incIndex();
+		return id;
 	}
 
 	/**
@@ -131,5 +133,9 @@ public abstract class CountryGenerator {
 
 	public static Integer getIndex() {
 		return index;
+	}
+	
+	private static void incIndex() {
+		index = index + 1;
 	}
 }

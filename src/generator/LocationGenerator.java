@@ -109,7 +109,9 @@ public class LocationGenerator {
 	
 	public static String randomId() {
 		Integer index = getIndex();
-		return "Location" + index;
+		String id = "Location" + index;
+		incIndex();
+		return id;
 	}
 
 	/**
@@ -127,6 +129,10 @@ public class LocationGenerator {
 
 	public static Integer getIndex() {
 		return index;
+	}
+	
+	private static void incIndex() {
+		index = index + 1;
 	}
 
 }

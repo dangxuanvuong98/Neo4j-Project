@@ -23,7 +23,7 @@ import object.Source;
 public class Model {
 	private static String entityAnnotationPattern = "CREATE (:{label}{{attributes}})\n";
 	private static String relationshipAnnotationPattern = "MATCH (a), (b)\n"
-			+ "WHERE a.id = {entId1} and b.id = {endId2}\n"
+			+ "WHERE a.id = {entId1} and b.id = {entId2}\n"
 			+ "CREATE (a)-[r:{attributes}]->(b)\n";
 	private static String attributeAnnotationPattern = "{fieldname}: {fieldvalue}";
 	
@@ -60,8 +60,8 @@ public class Model {
 			fieldValueAnnotation = fieldValue.toString();
 		} else if (fieldValue instanceof Source) {
 			Source source = (Source) fieldValue;
-			fieldValueAnnotation = "\"{link: " + source.getLink() + ", date: "
-					+ source.getDate().toString();
+			fieldValueAnnotation = "\"{link: " + source.getLink() + ", date: \'"
+					+ source.getDate().toString() + "\'}\"";
 		} else if (fieldValue instanceof Time) {
 			fieldValueAnnotation = "\"date(" + (new SimpleDateFormat("yyyy-mm-dd")).format(fieldValue) + ")\"";
 		}
@@ -97,7 +97,7 @@ public class Model {
 			label = "Time";
 			ent = (Time) ent;
 		} else {
-			return "";
+			return "\"\"";
 		}
 		ArrayList<String> fieldAnnotation = new ArrayList<String>();
 		Class<?> entityClass = ent.getClass();
@@ -136,7 +136,7 @@ public class Model {
 		Field[] fields = relationshipClass.getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
 			String fieldName = fields[i].getName();
-			if (fieldName == "en_id1" || fieldName == "en_id2") {
+			if (fieldName == "en_id1" || fieldName == "en_id2" || fieldName == "type") {
 				continue;
 			}
 			Object fieldValue = "";
@@ -150,12 +150,13 @@ public class Model {
 			}
 			String fieldValueAnnotation = fieldValueToAnnotation(fieldValue);
 			fieldAnnotation.add(attributeAnnotationPattern.replace(
-					"{fieldname}", fieldName).replace("{fieldvalue",
+					"{fieldname}", fieldName).replace("{fieldvalue}",
 					fieldValueAnnotation));
 		}
-		return relationshipAnnotationPattern.replace("{entId1}", "")
-				.replace("{entId2}", "")
-				.replace("{attributes}", String.join(", ", fieldAnnotation));
+		return relationshipAnnotationPattern.replace(
+				"{entId1}", fieldValueToAnnotation(rela.getEn_id1())).replace(
+				"{entId2}", fieldValueToAnnotation(rela.getEn_id2())).replace(
+				"{attributes}", rela.getType() + "{" + String.join(", ", fieldAnnotation) + "}");
 	}
 
 	/**

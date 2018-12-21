@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -26,6 +27,7 @@ public class EventGenerator {
 	 */
 	public static void getData(String event_file, String venue_file) {
 		index = 0;
+		event_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(event_file), "UTF8"))) {
 			String name;
@@ -39,7 +41,8 @@ public class EventGenerator {
 			System.out.println("Error: Fail to read filename: " + event_list);
 			e.printStackTrace();
 		}
-
+		
+		venue_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(event_file), "UTF8"))) {
 			String name;
@@ -61,7 +64,9 @@ public class EventGenerator {
 	 */
 	public static String randomId() {
 		Integer index = getIndex();
-		return "Event" + index;
+		String id = "Event" + index;
+		incIndex();
+		return id;
 	}
 
 	/**
@@ -69,8 +74,9 @@ public class EventGenerator {
 	 * @return
 	 */
 	public static String randomName() {
-		if (event_list.isEmpty())
+		if (event_list.isEmpty()) {
 			return "";
+		}
 		int random_num = (int) (Math.random() * event_list.size());
 		return event_list.get(random_num);
 	}
@@ -144,5 +150,9 @@ public class EventGenerator {
 
 	public static Integer getIndex() {
 		return index;
+	}
+	
+	private static void incIndex() {
+		index = index + 1;
 	}
 }

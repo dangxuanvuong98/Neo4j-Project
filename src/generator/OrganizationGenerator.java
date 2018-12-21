@@ -120,7 +120,10 @@ public class OrganizationGenerator {
 
 	// id cho thực thể Organization mới
 	public static String randomId() {
-		return "Organization" + getIndex();
+		Integer index = getIndex();
+		String id = "Organization" + index;
+		incIndex();
+		return id;
 	}
 
 	public static String randomName() {
@@ -157,6 +160,10 @@ public class OrganizationGenerator {
 	}
 	
 	public static String randomChairman() {
+		if (lastname_list.isEmpty() && midname_list.isEmpty()
+				&& firstname_list.isEmpty()) {
+			return "";
+		}
 		String chairman = "";
 		int random_num = (int) (Math.random() * lastname_list.size());
 		chairman += lastname_list.get(random_num);
@@ -181,5 +188,9 @@ public class OrganizationGenerator {
 	
 	public static Integer getIndex() {
 		return index;
+	}
+	
+	private static void incIndex() {
+		index = index + 1;
 	}
 }

@@ -89,7 +89,10 @@ public class PersonGenerator {
 	}
 
 	public static String randomId() {
-		return "Person" + getIndex();
+		Integer index = getIndex();
+		String id = "Person" + index;
+		incIndex();
+		return id;
 	}
 
 	public static String randomName() {
@@ -144,5 +147,9 @@ public class PersonGenerator {
 
 	public static Integer getIndex() {
 		return index;
+	}
+	
+	private static void incIndex() {
+		index = index + 1;
 	}
 }

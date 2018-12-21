@@ -14,7 +14,7 @@ import object.Time;
  * 
  */
 public class TimeGenerator {
-	private static Integer index = 0;
+	private static Integer index;
 	static List<String> special_day_list;
 
 	/**
@@ -25,6 +25,7 @@ public class TimeGenerator {
 	 *            đường dẫn tới file chứa danh sách các ngày đặc biệt trong năm
 	 */
 	public static void getData(String filename) {
+		index = 0;
 		// Initialize list of times
 		special_day_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(
@@ -45,7 +46,10 @@ public class TimeGenerator {
 	}
 	
 	public static String randomId() {
-		return "Time" + getIndex();
+		Integer index = getIndex();
+		String id = "Time" + index;
+		incIndex();
+		return id;
 	}
 	
 	public static String randomName() {
@@ -74,5 +78,9 @@ public class TimeGenerator {
 
 	public static Integer getIndex() {
 		return index;
+	}
+	
+	private static void incIndex() {
+		index = index + 1;
 	}
 }
