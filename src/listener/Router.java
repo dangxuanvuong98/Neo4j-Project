@@ -11,7 +11,7 @@ public class Router {
 	private static Connector connector;
 
 	private static void create(int E, int R) {
-		for (int i = 0; i < E / 1000 + 1; i++) {
+		for (int i = 0; i < E / 1000; i++) {
 			Model model = new Model();
 			for (int j = 0; j < 1000; j++) {
 				if (i * 1000 + j == E) {
