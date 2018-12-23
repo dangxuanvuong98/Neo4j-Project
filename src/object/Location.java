@@ -19,10 +19,10 @@ public class Location extends Entity {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "###Name:" + name + "\n-ID:" + id + 
-				 "\n-Description:" + description + "\n-Source:"+source+"\n-Country:"+country;
+		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
+				+ description + "\n-Source:" + source + "\n-Country:" + country;
 	}
 }

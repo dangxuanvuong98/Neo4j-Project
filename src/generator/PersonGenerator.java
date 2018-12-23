@@ -17,17 +17,20 @@ public class PersonGenerator {
 	private static List<String> lastname_list;
 	private static List<String> job_list;
 	private static List<String> des_element_list;
-	
 
 	/**
 	 * 
-	 * @param firstname_file đường dẫn tới file danh sách first name
-	 * @param midname_file đường dẫn tới file danh sách mid name
-	 * @param lastname_file đường dẫn tới file danh sách last name
-	 * @param job_file đường dẫn tới file danh sách công việc(job)
+	 * @param firstname_file
+	 *            đường dẫn tới file danh sách first name
+	 * @param midname_file
+	 *            đường dẫn tới file danh sách mid name
+	 * @param lastname_file
+	 *            đường dẫn tới file danh sách last name
+	 * @param job_file
+	 *            đường dẫn tới file danh sách công việc(job)
 	 */
 	public static void getData(String firstname_file, String midname_file,
-			String lastname_file, String job_file,String des_element_file) {
+			String lastname_file, String job_file, String des_element_file) {
 		index = 0;
 
 		// Đọc danh sách tên
@@ -95,8 +98,8 @@ public class PersonGenerator {
 			System.out.println("Error: Fail to read filename: " + job_file);
 			e.printStackTrace();
 		}
-		
-		//Đọc danh sách thành phần phục vụ sinh description
+
+		// Đọc danh sách thành phần phục vụ sinh description
 		des_element_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(des_element_file), "UTF8"))) {
@@ -108,7 +111,8 @@ public class PersonGenerator {
 			System.out.println("Error: Missing filename: " + des_element_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: " + des_element_file);
+			System.out.println("Error: Fail to read filename: "
+					+ des_element_file);
 			e.printStackTrace();
 		}
 	}
@@ -135,9 +139,9 @@ public class PersonGenerator {
 		}
 		String name = "";
 		int random_num = (int) (Math.random() * lastname_list.size());
-		name = lastname_list.get(random_num)+" ";
+		name = lastname_list.get(random_num) + " ";
 		random_num = (int) (Math.random() * midname_list.size());
-		name = name+midname_list.get(random_num)+" ";
+		name = name + midname_list.get(random_num) + " ";
 		random_num = (int) (Math.random() * firstname_list.size());
 		name += firstname_list.get(random_num);
 		return name;
@@ -148,8 +152,9 @@ public class PersonGenerator {
 	 * @return mô tả ngẫu nhiên cho ngừoi
 	 */
 	public static String randomDescription() {
-		int rand=(int)(Math.random()*des_element_list.size());
-		return "Là một người nổi tiếng, nhận được sự chú ý "+des_element_list.get(rand);
+		int rand = (int) (Math.random() * des_element_list.size());
+		return "Là một người nổi tiếng, nhận được sự chú ý "
+				+ des_element_list.get(rand);
 	}
 
 	/**
@@ -183,7 +188,7 @@ public class PersonGenerator {
 		int random_num = (int) (Math.random() * job_list.size());
 		return job_list.get(random_num);
 	}
-	
+
 	/**
 	 * 
 	 * @return thực thể Person với các thuộc sính ngẫu nhiên phù hợp
@@ -203,7 +208,7 @@ public class PersonGenerator {
 	public static Integer getIndex() {
 		return index;
 	}
-	
+
 	private static void incIndex() {
 		index = index + 1;
 	}

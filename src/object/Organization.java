@@ -1,7 +1,8 @@
 package object;
+
 /**
  * Lớp lưu trữ thông tin của thực thể Organization
- *
+ * 
  */
 public class Organization extends Entity {
 	private String headquarters;
@@ -47,11 +48,12 @@ public class Organization extends Entity {
 	public void setChairman(String chairman) {
 		this.chairman = chairman;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "###Name:" + name + "\n-ID:" + id + 
-				 "\n-Description:" + description + "\n-Source:"+source+ "\n-Headquarter:"+headquarters+"\n-Phone:"+phone+
-				 "\n-Email:"+email+"\n-Chairman:"+chairman;
+		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
+				+ description + "\n-Source:" + source + "\n-Headquarter:"
+				+ headquarters + "\n-Phone:" + phone + "\n-Email:" + email
+				+ "\n-Chairman:" + chairman;
 	}
 }

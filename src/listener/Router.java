@@ -7,9 +7,9 @@ import database.Model;
 import generator.*;
 
 public class Router {
-	
+
 	private static Connector connector;
-	
+
 	private static void create(int E, int R) {
 		for (int i = 0; i < E / 1000 + 1; i++) {
 			Model model = new Model();
@@ -39,11 +39,11 @@ public class Router {
 					continue;
 				default:
 					continue;
-				}		
+				}
 			}
 			connector.query(model);
 		}
-//		System.out.println(CountryGenerator.getIndex());
+		// System.out.println(CountryGenerator.getIndex());
 		for (int i = 0; i < R; i++) {
 			Model model = new Model();
 			for (int j = 0; j < 1; j++) {
@@ -55,7 +55,7 @@ public class Router {
 			connector.query(model);
 		}
 	}
-	
+
 	public static void route(Connector connector) {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -66,8 +66,7 @@ public class Router {
 				int E = sc.nextInt();
 				int R = sc.nextInt();
 				create(E, R);
-			}
-			else {
+			} else {
 				continue;
 			}
 		}

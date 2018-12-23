@@ -11,7 +11,7 @@ public class Time extends Entity {
 
 	@Override
 	public String toString() {
-		return "###Name:" + name + "\n-ID:" + id + 
-				 "\n-Description:" + description + "\n-Source:"+source;
+		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
+				+ description + "\n-Source:" + source;
 	}
 }

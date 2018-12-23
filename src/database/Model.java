@@ -16,9 +16,11 @@ import object.Time;
 import object.Source;
 
 /**
- * Lớp Model dùng để lưu trữ các thực thể và quan hệ trước khi đưa lên cơ sở dữ liệu
+ * Lớp Model dùng để lưu trữ các thực thể và quan hệ trước khi đưa lên cơ sở dữ
+ * liệu
+ * 
  * @author vuong
- *
+ * 
  */
 public class Model {
 	private static String entityAnnotationPattern = "CREATE (:{label}{{attributes}})\n";
@@ -26,7 +28,7 @@ public class Model {
 			+ "WHERE a.id = {entId1} and b.id = {entId2}\n"
 			+ "CREATE (a)-[r:{attributes}]->(b)\n";
 	private static String attributeAnnotationPattern = "{fieldname}: {fieldvalue}";
-	
+
 	private ArrayList<Object> model = new ArrayList<Object>();
 
 	public Model() {
@@ -35,13 +37,14 @@ public class Model {
 
 	/**
 	 * Thêm một thực thể/ quan hệ vào model
-	 * @param object đối tượng cần thêm vào model
+	 * 
+	 * @param object
+	 *            đối tượng cần thêm vào model
 	 */
 	public void add(Object object) {
 		model.add(object);
 	}
 
-	
 	/**
 	 * Xoá toàn bộ thực thể trong model
 	 */
@@ -51,7 +54,9 @@ public class Model {
 
 	/**
 	 * Chuyển giá trị của một trường thành chuỗi ký tự tương ứng trong Cypher
-	 * @param fieldValue Giá trị cần chuyển đổi
+	 * 
+	 * @param fieldValue
+	 *            Giá trị cần chuyển đổi
 	 * @return Chuỗi ký tự tương ứng trong Cypher
 	 */
 	private String fieldValueToAnnotation(Object fieldValue) {
@@ -60,12 +65,13 @@ public class Model {
 			fieldValueAnnotation = fieldValue.toString();
 		} else if (fieldValue instanceof Source) {
 			Source source = (Source) fieldValue;
-			fieldValueAnnotation = "\"{link: " + source.getLink() + ", date: \'"
-					+ source.getDate().toString() + "\'}\"";
+			fieldValueAnnotation = "\"{link: " + source.getLink()
+					+ ", date: \'" + source.getDate().toString() + "\'}\"";
 		} else if (fieldValue instanceof Time) {
-			fieldValueAnnotation = "\"date(" + (new SimpleDateFormat("yyyy-mm-dd")).format(fieldValue) + ")\"";
-		}
-		else {
+			fieldValueAnnotation = "\"date("
+					+ (new SimpleDateFormat("yyyy-mm-dd")).format(fieldValue)
+					+ ")\"";
+		} else {
 			fieldValueAnnotation = "\"" + fieldValue.toString() + "\"";
 		}
 		return fieldValueAnnotation;
@@ -73,7 +79,9 @@ public class Model {
 
 	/**
 	 * Chuyển đổi một thực thể thành chuỗi ký tự tương ứng trong Cypher
-	 * @param ent Thực thể cần chuyển đổi
+	 * 
+	 * @param ent
+	 *            Thực thể cần chuyển đổi
 	 * @return Chuỗi ký tự tương ứng trong Cypher
 	 */
 	private String entityAnnotation(Entity ent) {
@@ -127,7 +135,9 @@ public class Model {
 
 	/**
 	 * Chuyển đổi một quan hệ thành chuỗi ký tự tương ứng trong Cypher
-	 * @param rela Quan hệ cần chuyển đổi
+	 * 
+	 * @param rela
+	 *            Quan hệ cần chuyển đổi
 	 * @return Chuỗi ký tự tương ứng trong Cypher
 	 */
 	private String relationshipAnnotation(Relationship rela) {
@@ -136,7 +146,8 @@ public class Model {
 		Field[] fields = relationshipClass.getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
 			String fieldName = fields[i].getName();
-			if (fieldName == "en_id1" || fieldName == "en_id2" || fieldName == "type") {
+			if (fieldName == "en_id1" || fieldName == "en_id2"
+					|| fieldName == "type") {
 				continue;
 			}
 			Object fieldValue = "";
@@ -153,15 +164,20 @@ public class Model {
 					"{fieldname}", fieldName).replace("{fieldvalue}",
 					fieldValueAnnotation));
 		}
-		return relationshipAnnotationPattern.replace(
-				"{entId1}", fieldValueToAnnotation(rela.getEn_id1())).replace(
-				"{entId2}", fieldValueToAnnotation(rela.getEn_id2())).replace(
-				"{attributes}", rela.getType() + "{" + String.join(", ", fieldAnnotation) + "}");
+		return relationshipAnnotationPattern
+				.replace("{entId1}", fieldValueToAnnotation(rela.getEn_id1()))
+				.replace("{entId2}", fieldValueToAnnotation(rela.getEn_id2()))
+				.replace(
+						"{attributes}",
+						rela.getType() + "{"
+								+ String.join(", ", fieldAnnotation) + "}");
 	}
 
 	/**
 	 * Chuyển đổi một đối tượng bất kỳ sang chuỗi ký tự tương ứng trong Cypher
-	 * @param obj Đối tượng cần chuyển đổi
+	 * 
+	 * @param obj
+	 *            Đối tượng cần chuyển đổi
 	 * @return Chuỗi ký tự tương ứng trong Cypher
 	 */
 	private String annotation(Object obj) {
@@ -176,6 +192,7 @@ public class Model {
 
 	/**
 	 * Chuyển đổi model thành chuỗi ký tự tương ứng trong Cypher
+	 * 
 	 * @return StringBuilder chứa chuỗi ký tự tương ứng trong Cypher
 	 */
 	public StringBuilder getModel() {

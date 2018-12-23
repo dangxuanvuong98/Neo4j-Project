@@ -1,9 +1,10 @@
 package object;
 
 import java.util.Date;
+
 /**
- * Lớp lưu trữ thông tin về nguồn gốc trích rút của thực thể
- *
+ * Lá»›p lÆ°u trá»¯ thÃ´ng tin vá»� nguá»“n gá»‘c trÃ­ch rÃºt cá»§a thá»±c thá»ƒ
+ * 
  */
 public class Source {
 	private String link;
@@ -29,10 +30,10 @@ public class Source {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "link:"+link+",extracted at "+date;
+		return "link:" + link + ",extracted at " + date;
 	}
-		
+
 }

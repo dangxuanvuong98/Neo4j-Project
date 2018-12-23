@@ -1,8 +1,10 @@
 package object;
+
 /**
- * Lớp trừu tượng,đại diện cho thực thể nói chung. 
- * Là lớp cha của mọi lớp thực thể:Person,Organization,Country,Location,Event,Time
- *
+ * Lá»›p trá»«u tÆ°á»£ng,Ä‘áº¡i diá»‡n cho thá»±c thá»ƒ nÃ³i chung. LÃ  lá»›p
+ * cha cá»§a má»�i lá»›p thá»±c
+ * thá»ƒ:Person,Organization,Country,Location,Event,Time
+ * 
  */
 public abstract class Entity {
 	protected String id;
@@ -15,7 +17,7 @@ public abstract class Entity {
 		this.id = new String();
 		this.name = new String();
 		this.description = new String();
-		this.source=new Source();
+		this.source = new Source();
 	}
 
 	public Entity(String name, String description) {
@@ -46,12 +48,12 @@ public abstract class Entity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public Source getSource() {
 		return this.source;
 	}
-	
+
 	public void setSource(Source source) {
-		this.source=source;
+		this.source = source;
 	}
 }

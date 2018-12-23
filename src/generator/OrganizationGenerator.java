@@ -24,20 +24,29 @@ public class OrganizationGenerator {
 
 	/**
 	 * 
-	 * @param organization_file :đường dẫn tới file chứa tên các tổ chức
-	 * @param headquarters_file :đường dẫn tới file chứa tên các trụ sở
-	 * @param firstname_file :đường dẫn tới file chứa danh sách first name
-	 * @param midname_file :đường dẫn tới file chứa danh sách mid name
-	 * @param lastname_file :đường dẫn tới file chứa danh sách last name
-	 * @param email_domain_file :đường dẫn tới file chứa danh sách các email domain
-	 * @param des_element_file :đường dẫn tới file chứa danh sách phần tử phù hợp để sinh description
-	 * @param country_file :đường dẫn tới file chứa danh sách các quốc gia
+	 * @param organization_file
+	 *            :đường dẫn tới file chứa tên các tổ chức
+	 * @param headquarters_file
+	 *            :đường dẫn tới file chứa tên các trụ sở
+	 * @param firstname_file
+	 *            :đường dẫn tới file chứa danh sách first name
+	 * @param midname_file
+	 *            :đường dẫn tới file chứa danh sách mid name
+	 * @param lastname_file
+	 *            :đường dẫn tới file chứa danh sách last name
+	 * @param email_domain_file
+	 *            :đường dẫn tới file chứa danh sách các email domain
+	 * @param des_element_file
+	 *            :đường dẫn tới file chứa danh sách phần tử phù hợp để sinh
+	 *            description
+	 * @param country_file
+	 *            :đường dẫn tới file chứa danh sách các quốc gia
 	 */
 	public static void getData(String organization_file,
 			String headquarters_file, String firstname_file,
 			String midname_file, String lastname_file,
-			String email_domain_file,String des_element1_file,
-			String des_element2_file,String country_file) {
+			String email_domain_file, String des_element1_file,
+			String des_element2_file, String country_file) {
 		index = 0;
 
 		// Đọc tên tổ chức
@@ -105,8 +114,7 @@ public class OrganizationGenerator {
 			System.out.println("Error: Missing filename: " + midname_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: "
-					+ midname_file);
+			System.out.println("Error: Fail to read filename: " + midname_file);
 			e.printStackTrace();
 		}
 
@@ -122,11 +130,11 @@ public class OrganizationGenerator {
 			System.out.println("Error: Missing filename: " + lastname_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: "
-					+ lastname_file);
+			System.out
+					.println("Error: Fail to read filename: " + lastname_file);
 			e.printStackTrace();
 		}
-		
+
 		// Đọc danh sách email doamain
 		email_domain_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -139,10 +147,11 @@ public class OrganizationGenerator {
 			System.out.println("Error: Missing filename: " + email_domain_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: "+ email_domain_file);
+			System.out.println("Error: Fail to read filename: "
+					+ email_domain_file);
 			e.printStackTrace();
 		}
-		
+
 		// Đọc danh sách phần tử 1 phục vụ sinh mô tả phù hợp
 		des_element1_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -155,10 +164,11 @@ public class OrganizationGenerator {
 			System.out.println("Error: Missing filename: " + des_element1_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: "+ des_element1_file);
+			System.out.println("Error: Fail to read filename: "
+					+ des_element1_file);
 			e.printStackTrace();
 		}
-		
+
 		// Đọc danh sách phần tử 2 phục vụ sinh mô tả phù hợp
 		des_element2_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -171,10 +181,11 @@ public class OrganizationGenerator {
 			System.out.println("Error: Missing filename: " + des_element2_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: "+ des_element2_file);
+			System.out.println("Error: Fail to read filename: "
+					+ des_element2_file);
 			e.printStackTrace();
 		}
-		
+
 		// Đọc danh sách các đất nước
 		country_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -187,7 +198,7 @@ public class OrganizationGenerator {
 			System.out.println("Error: Missing filename: " + country_file);
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error: Fail to read filename: "+ country_file);
+			System.out.println("Error: Fail to read filename: " + country_file);
 			e.printStackTrace();
 		}
 	}
@@ -202,7 +213,7 @@ public class OrganizationGenerator {
 		incIndex();
 		return id;
 	}
-	
+
 	/**
 	 * 
 	 * @return tên tổ chức ngẫu nhiên phù hợp
@@ -213,18 +224,19 @@ public class OrganizationGenerator {
 		int random_num = (int) (Math.random() * organization_list.size());
 		return organization_list.get(random_num);
 	}
-	
+
 	/**
 	 * 
 	 * @return mô tả ngẫu nhiên phù hợp
 	 */
 	public static String randomDescription() {
-		if (des_element1_list.isEmpty()||des_element2_list.isEmpty())
+		if (des_element1_list.isEmpty() || des_element2_list.isEmpty())
 			return "là một tổ chức";
-		int rand1=(int)(Math.random()*des_element1_list.size());
-		int rand2=(int)(Math.random()*des_element2_list.size());
-		
-		return "là một "+des_element1_list.get(rand1)+" "+des_element2_list.get(rand2)+" trên thế giới";
+		int rand1 = (int) (Math.random() * des_element1_list.size());
+		int rand2 = (int) (Math.random() * des_element2_list.size());
+
+		return "là một " + des_element1_list.get(rand1) + " "
+				+ des_element2_list.get(rand2) + " trên thế giới";
 	}
 
 	/**
@@ -232,11 +244,12 @@ public class OrganizationGenerator {
 	 * @return một trụ sở chính phù hợp
 	 */
 	public static String randomHeadquarters() {
-		if (headquarters_list.isEmpty()||country_list.isEmpty())
+		if (headquarters_list.isEmpty() || country_list.isEmpty())
 			return "";
 		int random_num1 = (int) (Math.random() * headquarters_list.size());
 		int random_num2 = (int) (Math.random() * country_list.size());
-		return headquarters_list.get(random_num1)+" city of "+country_list.get(random_num2);
+		return headquarters_list.get(random_num1) + " city of "
+				+ country_list.get(random_num2);
 	}
 
 	/**
@@ -253,18 +266,19 @@ public class OrganizationGenerator {
 
 	/**
 	 * 
-	 * @param name tên tổ chức
+	 * @param name
+	 *            tên tổ chức
 	 * @return email ngẫu nhiên phù hợp
 	 */
 	public static String randomEmail(String name) {
 		if (email_domain_list.isEmpty())
 			return "";
 		int random_num = (int) (Math.random() * email_domain_list.size());
-		return name.toLowerCase().replaceAll(" ","")
+		return name.toLowerCase().replaceAll(" ", "")
 				+ Integer.toString((int) (Math.random() * 1000)) + "@"
 				+ email_domain_list.get(random_num);
 	}
-	
+
 	/**
 	 * 
 	 * @return tên chủ tịch bất kì(tên người)
@@ -276,9 +290,9 @@ public class OrganizationGenerator {
 		}
 		String chairman = "";
 		int random_num = (int) (Math.random() * lastname_list.size());
-		chairman = lastname_list.get(random_num)+" ";
+		chairman = lastname_list.get(random_num) + " ";
 		random_num = (int) (Math.random() * midname_list.size());
-		chairman = chairman+midname_list.get(random_num)+" ";
+		chairman = chairman + midname_list.get(random_num) + " ";
 		random_num = (int) (Math.random() * firstname_list.size());
 		chairman += firstname_list.get(random_num);
 		return chairman;
@@ -300,11 +314,11 @@ public class OrganizationGenerator {
 		organization.setEmail(randomEmail(organization.getName()));
 		return organization;
 	}
-	
+
 	public static Integer getIndex() {
 		return index;
 	}
-	
+
 	private static void incIndex() {
 		index = index + 1;
 	}

@@ -20,7 +20,8 @@ public class RelationshipGenerator {
 	/**
 	 * Đọc dữ liêụ từ các file,trích rút và lưu trữ phục vụ việc sinh ngẫu nhiên
 	 * 
-	 * @param folder_path đường dẫn tới thư mục chứa các danh sách phục vụ sinh quan hệ
+	 * @param folder_path
+	 *            đường dẫn tới thư mục chứa các danh sách phục vụ sinh quan hệ
 	 */
 	@SuppressWarnings("unchecked")
 	public static void getData(String folder_path) {
@@ -37,8 +38,9 @@ public class RelationshipGenerator {
 			for (int j = 0; j < 6; j++) {
 				index[i][j] = 0;
 				relationship_list[i][j] = new ArrayList<String>();
-				try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-						new FileInputStream(folder_path+"/"+i+j), "UTF8"))) {
+				try (BufferedReader reader = new BufferedReader(
+						new InputStreamReader(new FileInputStream(folder_path
+								+ "/" + i + j), "UTF8"))) {
 					String name;
 					while ((name = reader.readLine()) != null) {
 						relationship_list[i][j].add(name);
@@ -70,7 +72,8 @@ public class RelationshipGenerator {
 						+ (int) (Math.random() * PersonGenerator.getIndex());
 			case 1:
 				return "Oganization"
-						+ (int) (Math.random() * OrganizationGenerator.getIndex());
+						+ (int) (Math.random() * OrganizationGenerator
+								.getIndex());
 			case 2:
 				return "Country"
 						+ (int) (Math.random() * CountryGenerator.getIndex());
@@ -90,7 +93,6 @@ public class RelationshipGenerator {
 			return "Entity";
 		}
 	}
-	
 
 	/**
 	 * Sinh ngẫu nhiên một Relationship. Xác xuất xuất hiện của từng loại quan
