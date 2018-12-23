@@ -54,6 +54,7 @@ public class Router {
 			}
 			connector.query(model);
 		}
+		System.out.println("Đã tạo " + E + " thực thể và " + R + " quan hệ!");
 	}
 
 	public static void route(Connector connector) {

@@ -10,6 +10,7 @@ encoding//src/generator/PersonGenerator.java=UTF-8
 encoding//src/generator/RelationshipGenerator.java=UTF-8
 encoding//src/generator/SourceGenerator.java=UTF-8
 encoding//src/generator/TimeGenerator.java=UTF-8
+encoding//src/listener/Router.java=UTF-8
 encoding//src/object/Country.java=UTF-8
 encoding//src/object/Entity.java=UTF-8
 encoding//src/object/Location.java=UTF-8
