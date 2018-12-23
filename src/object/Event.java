@@ -2,6 +2,10 @@ package object;
 
 import java.util.Date;
 
+/**
+ * Lớp lưu trữ thông tin của thực thể Event
+ * 
+ */
 public class Event extends Entity {
 	private Date timeStart;
 	private Date timeEnd;
@@ -36,5 +40,12 @@ public class Event extends Entity {
 
 	public void setVenue(String venue) {
 		this.venue = venue;
+	}
+
+	@Override
+	public String toString() {
+		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
+				+ description + "\n-Source:" + source + "\n-Start:" + timeStart
+				+ "\n-End:" + timeEnd + "\n-At:" + venue;
 	}
 }
