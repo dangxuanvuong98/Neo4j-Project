@@ -307,7 +307,6 @@ public class OrganizationGenerator {
 		organization.setId(randomId());
 		organization.setName(randomName());
 		organization.setDescription(randomDescription());
-		organization.setSource(SourceGenerator.generateSource());
 		organization.setChairman(randomChairman());
 		organization.setHeadquarters(randomHeadquarters());
 		organization.setPhone(randomPhone());

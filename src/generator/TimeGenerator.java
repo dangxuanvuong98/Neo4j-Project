@@ -84,7 +84,6 @@ public class TimeGenerator {
 		time.setDescription(randomDescription());
 		time.setId(randomId());
 		time.setName(randomName());
-		time.setSource(SourceGenerator.generateSource());
 		return time;
 	}
 

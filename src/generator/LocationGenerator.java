@@ -142,7 +142,6 @@ public class LocationGenerator {
 		location.setId(randomId());
 		location.setName(randomName());
 		location.setDescription(randomDescription());
-		location.setSource(SourceGenerator.generateSource());
 		location.setCountry(randomCountry());
 		return location;
 	}

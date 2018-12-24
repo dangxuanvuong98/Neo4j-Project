@@ -52,7 +52,7 @@ public class Organization extends Entity {
 	@Override
 	public String toString() {
 		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
-				+ description + "\n-Source:" + source + "\n-Headquarter:"
+				+ description + "\n-Headquarter:"
 				+ headquarters + "\n-Phone:" + phone + "\n-Email:" + email
 				+ "\n-Chairman:" + chairman;
 	}

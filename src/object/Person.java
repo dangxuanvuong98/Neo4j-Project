@@ -43,7 +43,7 @@ public class Person extends Entity {
 	@Override
 	public String toString() {
 		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
-				+ description + "\n-Source:" + source + "\n-Age:" + age
+				+ description + "\n-Age:" + age
 				+ "\n-Gender:" + gender + "\n-Job:" + job;
 	}
 }

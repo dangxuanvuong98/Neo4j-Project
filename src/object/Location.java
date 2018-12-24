@@ -23,6 +23,6 @@ public class Location extends Entity {
 	@Override
 	public String toString() {
 		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
-				+ description + "\n-Source:" + source + "\n-Country:" + country;
+				+ description + "\n-Country:" + country;
 	}
 }

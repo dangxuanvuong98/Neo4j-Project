@@ -197,7 +197,6 @@ public class EventGenerator {
 		event.setId(randomId());
 		event.setName(randomName());
 		event.setDescription(randomDescription());
-		event.setSource(SourceGenerator.generateSource());
 		event.setTimeStart(randomTimeStart());
 		event.setTimeEnd(randomTimeEnd(event.getTimeStart()));
 		event.setVenue(randomVenue());

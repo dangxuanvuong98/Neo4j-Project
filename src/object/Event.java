@@ -45,7 +45,7 @@ public class Event extends Entity {
 	@Override
 	public String toString() {
 		return "###Name:" + name + "\n-ID:" + id + "\n-Description:"
-				+ description + "\n-Source:" + source + "\n-Start:" + timeStart
+				+ description + "\n-Start:" + timeStart
 				+ "\n-End:" + timeEnd + "\n-At:" + venue;
 	}
 }

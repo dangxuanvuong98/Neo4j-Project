@@ -56,6 +56,10 @@ public class Router {
 		}
 		System.out.println("Đã tạo " + E + " thực thể và " + R + " quan hệ!");
 	}
+	
+	private void queryUI() {
+		
+	}
 
 	public static void route(Connector connector) {
 		@SuppressWarnings("resource")
@@ -68,7 +72,7 @@ public class Router {
 				int R = sc.nextInt();
 				create(E, R);
 			} else {
-				continue;
+				queryUI();
 			}
 		}
 	}

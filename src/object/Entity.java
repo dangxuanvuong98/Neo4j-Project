@@ -10,14 +10,12 @@ public abstract class Entity {
 	protected String id;
 	protected String name;
 	protected String description;
-	protected Source source;
 
 	public Entity() {
 		super();
 		this.id = new String();
 		this.name = new String();
 		this.description = new String();
-		this.source = new Source();
 	}
 
 	public Entity(String name, String description) {
@@ -47,13 +45,5 @@ public abstract class Entity {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Source getSource() {
-		return this.source;
-	}
-
-	public void setSource(Source source) {
-		this.source = source;
 	}
 }
