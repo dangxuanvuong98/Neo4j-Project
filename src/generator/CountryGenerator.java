@@ -40,7 +40,7 @@ public abstract class CountryGenerator {
 	 *            :đường dẫn tới file chứa danh sách các phần tử 3 của
 	 *            description
 	 */
-	public static void getData(String country_file, String capital_file,
+	public static void readData(String country_file, String capital_file,
 			String des_element1_file, String des_element2_file,
 			String des_element3_file) {
 		index = 0;

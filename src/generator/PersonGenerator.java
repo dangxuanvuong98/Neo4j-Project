@@ -29,7 +29,7 @@ public class PersonGenerator {
 	 * @param job_file
 	 *            đường dẫn tới file danh sách công việc(job)
 	 */
-	public static void getData(String firstname_file, String midname_file,
+	public static void readData(String firstname_file, String midname_file,
 			String lastname_file, String job_file, String des_element_file) {
 		index = 0;
 

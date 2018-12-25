@@ -24,19 +24,19 @@ public class Main {
 	public static void init() {
 		connector = new Connector("bolt://localhost:7687", "neo4j",
 				"vuong220598");
-		CountryGenerator.getData("rawdata/Country/country_list",
+		CountryGenerator.readData("rawdata/Country/country_list",
 				"rawdata/Country/capital_list",
 				"rawdata/Country/des_element1_list",
 				"rawdata/Country/des_element2_list",
 				"rawdata/Country/des_element3_list");
-		EventGenerator.getData("rawdata/Event/venue_list",
+		EventGenerator.readData("rawdata/Event/venue_list",
 				"rawdata/Event/country_list",
 				"rawdata/Event/festival_name_list",
 				"rawdata/Event/product_name_list");
-		LocationGenerator.getData("rawdata/Location/location_list",
+		LocationGenerator.readData("rawdata/Location/location_list",
 				"rawdata/Location/country_list",
 				"rawdata/Location/des_element_list");
-		OrganizationGenerator.getData(
+		OrganizationGenerator.readData(
 				"rawdata/Organization/organization_name_list",
 				"rawdata/Organization/headquarters_list",
 				"rawdata/Organization/firstname_list",
@@ -46,12 +46,12 @@ public class Main {
 				"rawdata/Organization/des_element1_list",
 				"rawdata/Organization/des_element2_list",
 				"rawdata/Organization/country_list");
-		PersonGenerator.getData("rawdata/Person/firstname_list",
+		PersonGenerator.readData("rawdata/Person/firstname_list",
 				"rawdata/Person/midname_list", "rawdata/Person/lastname_list",
 				"rawdata/Person/job_list", "rawdata/Person/des_element_list");
-		RelationshipGenerator.getData("rawdata/Relationship");
-		TimeGenerator.getData("rawdata/Time/special_day_list");
-		SourceGenerator.getData("rawdata/Source/domain_list");
+		RelationshipGenerator.readData("rawdata/Relationship");
+		TimeGenerator.readData("rawdata/Time/special_day_list");
+		SourceGenerator.readData("rawdata/Source/domain_list");
 		Router.route(connector);
 	}
 

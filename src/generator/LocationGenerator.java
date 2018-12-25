@@ -31,7 +31,7 @@ public class LocationGenerator {
 	 * @param des_element_file
 	 *            :đường dẫn tới file chứa danh sách phần tử phục vụ sinh mô tả
 	 */
-	public static void getData(String location_file, String country_file,
+	public static void readData(String location_file, String country_file,
 			String des_element_file) {
 		index = 0;
 

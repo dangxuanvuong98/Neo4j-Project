@@ -24,7 +24,7 @@ public class RelationshipGenerator {
 	 *            đường dẫn tới thư mục chứa các danh sách phục vụ sinh quan hệ
 	 */
 	@SuppressWarnings("unchecked")
-	public static void getData(String folder_path) {
+	public static void readData(String folder_path) {
 		/*
 		 * Khởi tạo mảng 6*6 các String list Mỗi String list lưu trữ danh sách
 		 * quan hệ giữa 2 loại thực thể với nhau Có 6 loại thực thể,type_index

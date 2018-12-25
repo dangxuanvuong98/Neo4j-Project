@@ -57,8 +57,8 @@ public class Router {
 		System.out.println("Đã tạo " + E + " thực thể và " + R + " quan hệ!");
 	}
 	
-	private void queryUI() {
-		
+	private static void queryUI() {
+		return;
 	}
 
 	public static void route(Connector connector) {

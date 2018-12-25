@@ -21,7 +21,7 @@ public class SourceGenerator {
 	 * @param domain_file
 	 *            Đường dẫn đến file chứa danh sách các domain
 	 */
-	public static void getData(String domain_file) {
+	public static void readData(String domain_file) {
 		// Đọc danh sách các domain
 		domain_list = new ArrayList<String>();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(

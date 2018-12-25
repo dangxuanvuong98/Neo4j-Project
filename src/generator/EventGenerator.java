@@ -30,7 +30,7 @@ public class EventGenerator {
 	 * @param product_name_file
 	 *            đường dẫn tới danh sách tên các sản phẩm
 	 */
-	public static void getData(String venue_file, String country_file,
+	public static void readData(String venue_file, String country_file,
 			String festival_name_file, String product_name_file) {
 		index = 0;
 

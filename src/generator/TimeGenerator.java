@@ -25,7 +25,7 @@ public class TimeGenerator {
 	 * @param special_day_file
 	 *            đường dẫn tới file chứa danh sách các ngày đặc biệt trong năm
 	 */
-	public static void getData(String special_day_file) {
+	public static void readData(String special_day_file) {
 		index = 0;
 
 		// Initialize list of times

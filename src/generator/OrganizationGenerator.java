@@ -42,7 +42,7 @@ public class OrganizationGenerator {
 	 * @param country_file
 	 *            :đường dẫn tới file chứa danh sách các quốc gia
 	 */
-	public static void getData(String organization_file,
+	public static void readData(String organization_file,
 			String headquarters_file, String firstname_file,
 			String midname_file, String lastname_file,
 			String email_domain_file, String des_element1_file,
